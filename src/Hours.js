@@ -5,7 +5,6 @@ import {collection, addDoc} from 'firebase/firestore'
 function Hours(){
 	const [newHour,setHour]=useState(0);
 	const [newDate,setDate]=useState("");
-	var [hoursCollectionRef]=db.collection('time')//collection(db,"time")
 	//date and day function
 	useEffect(()=>{
 		var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -16,12 +15,19 @@ function Hours(){
 		var completeDate=month+" "+d.getDate();
 		setDate(completeDate)
 	})
-	const createHour=async()=>{
+	/*const createHour=async()=>{
 		await addDoc(hoursCollectionRef,{hour:newHour,date:newDate})
-	}
+
+	}*/
 	//data sending to function
-	function handleClick(){		
+	async function handleClick(){		
 		console.log("time",newHour,newDate)
+		//await addDoc(hoursCollectionRef,{hour:newHour,date:newDate})		
+		const res=await db.collection("time").add({
+			date:newDate,
+			hour:newHour
+		})
+		console.log(res.id)
 		setHour(0)
 	}
 	return(
