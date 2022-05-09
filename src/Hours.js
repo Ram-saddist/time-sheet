@@ -1,6 +1,5 @@
 import {useState,useEffect} from 'react'
 import {db} from './firebaseConfig'
-import {collection, addDoc} from 'firebase/firestore'
 
 function Hours(){
 	const [newHour,setHour]=useState(0);
@@ -14,11 +13,7 @@ function Hours(){
 		var month=monthNames[d.getMonth()];
 		var completeDate=month+" "+d.getDate();
 		setDate(completeDate)
-	})
-	/*const createHour=async()=>{
-		await addDoc(hoursCollectionRef,{hour:newHour,date:newDate})
-
-	}*/
+	},[])
 	//data sending to function
 	async function handleClick(){		
 		console.log("time",newHour,newDate)
