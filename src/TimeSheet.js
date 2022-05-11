@@ -1,6 +1,5 @@
 import {useState,useEffect} from 'react'
 import {db} from './firebaseConfig'
-import {collection, getDocs} from 'firebase/firestore'
 
 function TimeSheet(){
 	const [timeSheetValue,setTimeSheetValue]=useState([])
@@ -8,24 +7,22 @@ function TimeSheet(){
 		retrieve()
 	},[])
 	async function retrieve(){
-		 	/*const dataRef=db.collection('time');
-			const snapShot=await dataRef.get();
-			setTimeSheetValue(snapShot)
-			console.log("timesheet",timeSheetValue)*/
-			const snapShot=await getDocs(collection(db,'time'));
-			setTimeSheetValue(snapShot.docs.map((doc)=>(
-				{...doc.data(),id:doc.id}
-			)))
-		 }
+		const dataRef=db.collection('time').orderBy("date", "asc");
+		const snapShot=await dataRef.get();
+		console.log("dataref",snapShot)
+		setTimeSheetValue(snapShot.docs.map((doc)=>(
+			{date:doc.data().date.toDate().toDateString(),hour:doc.data().hour,id:doc.id}
+		)))
+	}
 	return(
 		<div>
 			{console.log("timesheet value",timeSheetValue)}
 			<h1>Record</h1>
 			{
 				timeSheetValue.map((doc)=>(
-					<div className="main" key={doc.id}>
-						<p>Hours:{doc.hour}</p>
+					<div className="main-timesheet" key={doc.id}>
 						<p>Time:{doc.date}</p>
+						<p>Hours:{doc.hour}</p>
 					</div>	
 				))
 			}

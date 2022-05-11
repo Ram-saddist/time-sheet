@@ -1,23 +1,12 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import {db} from './firebaseConfig'
+import firebase from 'firebase/compat/app';
 
 function Hours(){
 	const [newHour,setHour]=useState(0);
-	const [newDate,setDate]=useState("");
-	//date and day function
-	useEffect(()=>{
-		var monthNames = ["January", "February", "March", "April", "May", "June",
- 			 "July", "August", "September", "October", "November", "December"
-			];
-		var d = new Date();
-		var month=monthNames[d.getMonth()];
-		var completeDate=month+" "+d.getDate();
-		setDate(completeDate)
-	},[])
 	//data sending to function
-	async function handleClick(){		
-		console.log("time",newHour,newDate)
-		//await addDoc(hoursCollectionRef,{hour:newHour,date:newDate})		
+	async function handleClick(){
+		let newDate=(firebase.firestore.Timestamp.now())
 		const res=await db.collection("time").add({
 			date:newDate,
 			hour:newHour
@@ -26,13 +15,15 @@ function Hours(){
 		setHour(0)
 	}
 	return(
-		<div>
-		<input 
+		<div className="main-hour">
+		<input
+			className="input-hour"
 			type="text" 
 			placeholder="How many hours" 
 			value={newHour}
-			onChange={(e)=>setHour(e.target.value)}/>
-		<button onClick={handleClick}>Submit</button>
+			onChange={(e)=>setHour(e.target.value)}/><br/><br/>
+		<button className="btn-hour"
+		 onClick={handleClick}>Submit</button>
 		</div>
 	)
 }

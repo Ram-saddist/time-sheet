@@ -1,5 +1,6 @@
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 
+import './App.css'
 import Hours from './Hours'
 import NotFound from './NotFound'
 import TimeSheet from './TimeSheet'
