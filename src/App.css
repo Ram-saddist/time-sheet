@@ -110,3 +110,13 @@
     font-size: 14px;
   }
 }
+
+
+@media (max-width:600px) and (min-width: 480px){
+  .input-hour{
+      padding-left:2%;
+      font-size: 18px;
+      width: 45%;
+      margin-top: 3%;
+   }
+}

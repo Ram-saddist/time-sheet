@@ -21,6 +21,7 @@ code {
 @media (max-width: 800px){
   body{
     background: url("./tablet-view.jpg") no-repeat  fixed; 
+    background-size: cover;
   }
 }
 
@@ -28,5 +29,13 @@ code {
   body{
     background: url("./mobile-view.jpg") no-repeat  fixed; 
     background-size: cover;
+  }
+}
+
+@media (max-width:600px) and (min-width: 480px){
+  body{
+    background: url("./small-view.jpg") no-repeat  fixed; 
+    background-size: contain;
+    background-color: black;
   }
 }
