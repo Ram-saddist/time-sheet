@@ -1,8 +1,12 @@
+
 *{margin: 0%;}
 .nav{
   display: flex;
   justify-content: space-around;
   background-color: black;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 .nav-link{
   text-decoration: none;
@@ -14,24 +18,23 @@
 }
 
 .input-hour{
-  padding: 1%;
-  width: 60%;
-  
+  padding: 0.9%;
+  width: 28%;
+  font-size: 15px;
+  border-style: none;
+  border-radius: 8px;
 }
 .btn-hour{
 }
 .main-hour{
-  border: 1px solid grey;
-  background-color: white;
-  padding: 2%;
-  width: 48%;
-  height: 84.5vh;
+  margin-top: 10%;
+  margin-left: 5%;
 }
 
 .btn-hour{background-image: linear-gradient(to right, #1A2980 0%, #26D0CE  51%, #1A2980  100%)}
 .btn-hour{
   margin: 10px;
-  padding: 15px 45px;
+  padding: 9px 20px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -47,6 +50,15 @@
   text-decoration: none;
 }
 
+.rec{
+  margin: 5% 0% 5% 5%;
+  color: white;
+}
+.placeholder{
+  color: white;
+  margin-bottom: 1%;
+}
+
 .main-timesheet{
   display: inline-block;
   border: 1px solid grey;
@@ -55,4 +67,46 @@
   width: 20%;
   margin:0% 2% 2% 2%;
   border-radius: 8px;
+}
+
+.total-time{
+  margin:8% 0% 2% 3%;
+  color: white;
+  font-size: 26px;
+}
+.btn-total-time{
+  margin:0% 0% 3% 3%;
+}
+
+@media (max-width: 1000px){
+  .input-hour{
+    width: 35%;
+     font-size: 19px;
+  }
+}
+@media (max-width: 800px){
+ .input-hour{
+  font-size: 17px;
+  width: 38%;
+ }
+}
+
+@media (max-width: 600px){
+ .input-hour{
+  font-size: 16px;
+  width: 40%;
+ }
+}
+
+@media (max-width: 850px){
+  .main-timesheet{  
+    width: 25%;
+  }
+}
+
+@media (max-width: 700px){
+  .main-timesheet{  
+    width: 25%;
+    font-size: 14px;
+  }
 }

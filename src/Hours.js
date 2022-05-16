@@ -16,14 +16,14 @@ function Hours(){
 	}
 	return(
 		<div className="main-hour">
+		<p className="placeholder">Enter Hours</p>
 		<input
 			className="input-hour"
 			type="text" 
 			placeholder="How many hours" 
 			value={newHour}
 			onChange={(e)=>setHour(e.target.value)}/><br/><br/>
-		<button className="btn-hour"
-		 onClick={handleClick}>Submit</button>
+		<button className="btn-hour" onClick={handleClick}>Submit</button>
 		</div>
 	)
 }

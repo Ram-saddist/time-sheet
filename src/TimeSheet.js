@@ -3,27 +3,40 @@ import {db} from './firebaseConfig'
 
 function TimeSheet(){
 	const [timeSheetValue,setTimeSheetValue]=useState([])
+	const [totalTime,setTotalTime]=useState(0)
 	 useEffect(()=>{
 		retrieve()
 	},[])
 	async function retrieve(){
 		const dataRef=db.collection('time').orderBy("date", "asc");
 		const snapShot=await dataRef.get();
-		console.log("dataref",snapShot)
 		setTimeSheetValue(snapShot.docs.map((doc)=>(
-			{date:doc.data().date.toDate().toDateString(),hour:doc.data().hour,id:doc.id}
+			{
+				date:doc.data().date.toDate().toDateString(),
+				hour:Number(doc.data().hour)
+			}
 		)))
+	}
+	function handleTotalTime(){
+		var c=0
+		 timeSheetValue.map((doc)=>(
+			c+=doc.hour
+		))
+		setTotalTime(c)
 	}
 	return(
 		<div>
-			{console.log("timesheet value",timeSheetValue)}
-			<h1>Record</h1>
+			
+			<div className="total-time-main">
+				<p className="total-time">Total Time: {totalTime} hrs</p>
+				<button className="btn-total-time" onClick={handleTotalTime}>Click to get total Time</button>
+			</div>
 			{
 				timeSheetValue.map((doc)=>(
 					<div className="main-timesheet" key={doc.id}>
 						<p>Time:{doc.date}</p>
-						<p>Hours:{doc.hour}</p>
-					</div>	
+						<p><b>Hours:{doc.hour}</b></p>
+					</div>
 				))
 			}
 		</div>
